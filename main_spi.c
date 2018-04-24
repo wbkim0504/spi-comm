@@ -19,7 +19,9 @@ static void pabort(const char *s)
 static const char *device = "/dev/spidev0.0";  
 static uint8_t mode;  
 static uint8_t bits = 8;  
-static uint32_t speed = 250000;  
+//static uint32_t speed = 250000;  
+//static uint32_t speed = 4000000;  
+static uint32_t speed = 2000000;  
 static uint16_t delay;  
   
 static void transfer(int fd, char* tx, int len)  
@@ -90,9 +92,10 @@ int main(int argc, char *argv[])
   
     printf("spi mode: %d\n", mode);  
     printf("bits per word: %d\n", bits);  
-    printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);  
+    //printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);  
+    printf("max speed: %d Hz (%d MHz)\n", speed, speed/1000000);  
  
-    char buf[]="echo test";  
+    char buf[]="echo test\n";  
     transfer(fd, buf, ARRAY_SIZE(buf));  
   
     close(fd);  
